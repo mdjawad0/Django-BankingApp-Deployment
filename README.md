@@ -52,14 +52,12 @@ To kill all the active Docker containers:
 
 `sudo docker stop $(sudo docker ps -a -q)`
 
-To delete all images:
+To delete all the containers:
 
 `sudo docker rm $(sudo docker ps -aq)`
 
+To delete all the images:
+
+`sudo docker rmi $(sudo docker image ls -aq)`
+
 Your CI/CD pipeline should complete all stages successfully, and the banking application should be available at **http://localhost:8000**.
-
-
-
-
-
-
