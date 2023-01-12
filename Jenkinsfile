@@ -13,7 +13,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                withPythonEnv('/home/demopythonfsdyo/Documents/banking-env/') {
+                withPythonEnv('/home/pritithadanisim/Documents/banking-env/') {
                     // Print Path for Environment
                     sh "pip -V"
                     
@@ -28,7 +28,7 @@ pipeline {
         stage('Deploy') {
             steps {
         
-             withPythonEnv('/home/demopythonfsdyo/Documents/banking-env/') {
+             withPythonEnv('/home/pritithadanisim/Documents/banking-env/') {
                 // Run The Command to Start the  Server
                 sh "python manage.py runserver 0:8000"
                 echo 'Deploy Stage Finished'
