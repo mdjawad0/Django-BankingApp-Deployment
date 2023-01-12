@@ -1,0 +1,56 @@
+{% extends "adminapp/base.html" %}
+{% block content %}
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transaction Requests</title>
+</head>
+<body>
+  <section>
+    <table>
+      <tr>
+        <th>Sr. No</th>
+        <th>Request Code</th>
+        <th>Amount</th>
+        <th>Request By</th>
+        <th>Request Date</th>
+        <th>Tags</th>
+        <th>Actions</th>
+      </tr>
+
+      {% for transaction in transactions %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ transaction.code }}</td>
+        <td>INR {{ transaction.amount }}</td>
+        <td>{{ transaction.requested_by.email }}</td>
+        <td>{{ transaction.requested_on }}</td>
+        <td>
+          <span class="badge badge-warning">{{ transaction.request_label }}</span>
+          <span class="badge badge-info">{{ transaction.label }}</span>
+        </td>
+        {% if transaction.status == 0 %}
+        <td>
+          <a style="text-decoration: none;" href="approve-transaction?type={{transaction.request_type}}&tid={{transaction.id}}"> 
+          <button type="button" class="btn btn-dark">Approve</button>
+         </a>
+         <a style="text-decoration: none;" href="reject-transaction?&tid={{transaction.id}}"> 
+          <button type="button" class="btn btn-danger">Reject</button>
+          </a>
+        </td>
+        {% else %}
+        <td>
+          Transaction Settled | {{ transaction.label }}
+        </td>
+        {% endif %}
+      </tr>
+      {% endfor %}   
+    
+    </table>
+  </section>
+
+</body>
+</html>
+{% endblock %}

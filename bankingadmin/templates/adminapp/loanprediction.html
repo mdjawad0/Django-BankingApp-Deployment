@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="{% static 'style.css' %}">
+  <head>
+    <meta charset="utf-8">
+    <title>Loan Predictions</title>
+    <style>
+      body{
+        background-image: url("{% static 'mlbgrnd.png'%}");
+        background-size: 1400px 900px;
+        background-repeat: no-repeat;
+        background-position: top;
+        background-attachment: fixed;
+      }
+
+      form{
+        margin: 0 auto; 
+        background-color: #fff;
+        width:400px; 
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
+        transition: 0.3s;
+        padding: 4px 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+        
+      <form method="post" action="/bankingadmin/process-loan-prediction">
+        {% csrf_token %}
+        <br>
+        <img style="display: block; margin-left: auto; margin-right: auto;" src="{% static 'homeloan.png' %}" width="72px" height="72px">
+        <br>
+        <h3 style="text-align: center;color: #2691d9;">Enter Details to Predict Loan</h3>
+
+        <div class="txt_field">
+          <input type="text" name="gender" placeholder="Enter 1 or 0">
+          <span></span>
+          <label>Gender</label>
+        </div>
+        <div class="txt_field">
+            <input type="text" name="married" placeholder="Enter 1 or 0">
+            <span></span>
+            <label>Married</label>
+        </div>
+        <div class="txt_field">
+          <input type="text" name="dependents" placeholder="Enter 1 or 0">
+          <span></span>
+          <label>Dependents</label>
+        </div>
+        <div class="txt_field">
+            <input type="text" name="education" placeholder="Enter 1 or 0">
+            <span></span>
+            <label>Education</label>
+        </div>
+        <div class="txt_field">
+          <input type="text" name="employed" placeholder="Enter 1 or 0">
+          <span></span>
+          <label>Self Employed</label>
+        </div>
+        <div class="txt_field">
+            <input type="text" name="income" placeholder="Enter a number">
+            <span></span>
+            <label>Applicant Income</label>
+        </div>
+        <div class="txt_field">
+          <input type="text" name="coincome" placeholder="Enter a number">
+          <span></span>
+          <label>Co Applicant Income</label>
+        </div>
+        <div class="txt_field">
+            <input type="text" name="amount" placeholder="Enter a number">
+            <span></span>
+            <label>Loan Amount</label>
+        </div>
+        <div class="txt_field">
+          <input type="text" name="term" placeholder="Enter a number">
+          <span></span>
+          <label>Loan Amount Term</label>
+        </div>
+        <div class="txt_field">
+            <input type="text" name="credit" placeholder="Enter 1 or 0">
+            <span></span>
+            <label>Credit History</label>
+        </div>
+        <div class="txt_field">
+          <input type="text" name="area" placeholder="Enter a Number">
+          <span></span>
+          <label>Property Area</label>
+      </div>
+        <input type="submit" value="Predict Loan">
+        
+      </form>
+    </div>
+
+  </body>
+</html>

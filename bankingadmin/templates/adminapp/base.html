@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+    <body>
+        <nav>  
+               
+            <a href="/bankingadmin/users">Bank Admin</a>
+    
+            <ul>
+              <li>
+                <a href="/bankingadmin/users">Users</a>
+              </li>
+              <li>
+                <a href="/bankingadmin/transactions">Transaction Requests</a>
+              </li>
+              <li>
+                <a href="/bankingadmin/services">Service Requests</a>
+              </li>
+              <li>
+                <a href="/bankingadmin/complaints">Complaints</a>
+              </li>
+              <li>
+                <a href="/bankingadmin/loan-prediction">Loan Prediction</a>
+              </li>
+              <li>
+                <a href="/bankingadmin/logout">LogOut</a>
+              </li>
+            </ul>
+          </nav>
+    </body>
+</html>
+{% block content %}
+{% endblock %}

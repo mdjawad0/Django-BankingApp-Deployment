@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bank Admin</title>
+</head>
+<body>
+  <div class="center">
+  <img style="display: block; margin-left: auto; margin-right: auto;" src="{% static 'bank.png' %}" alt="My image" width="100px" height="100px">
+  <h2 style="text-align: center; color: #2691d9;">Banking Admin Application</h2>
+
+  <h2 style="text-align: center; color: #2691d9;">Login</h2>
+
+
+    <br>
+    <p style="text-align: center;color: #2691d9;">Enter Your Login Details to Proceed</p>
+    <form method="post" action="process-login">
+      {% csrf_token %}
+      <div class="txt_field">
+        <input type="text" name="email" required>
+        <label>Email</label>
+      </div>
+      <div class="txt_field">
+        <input type="password" name="password" required>
+        <label>Password</label>
+      </div>
+      <input type="submit" value="Login">
+      <div class="signup_link">
+        Admin Panel for Bank Use
+      </div>
+    </form>
+  </div>
+
+</body>
+</html>

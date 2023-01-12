@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Message</title>
+</head>
+<body>
+  <div class="center">
+  <br>
+    <img style="display: block; margin-left: auto; margin-right: auto;" src="{% static 'info.png' %}" alt="My image" width="100px" height="100px">
+  <br>
+    <h2 style="text-align: center; color: #2691d9;">Message</h2>
+    <br>
+    <p style="text-align: center;color: #0a324c;">{{message}}</p>
+    <br>
+    <div style="text-align: center;">
+        <a href="home"><button class="btn btn-dark">Back to Home</button></a> 
+    </div>
+    <br>
+  </div>
+
+</body>
+</html>

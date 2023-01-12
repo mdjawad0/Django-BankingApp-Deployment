@@ -1,0 +1,111 @@
+{% extends "userapp/base.html" %}
+{% block content %}
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transaction Request</title>
+</head>
+
+<body>
+ 
+  <section>
+    <h2>Transaction Request Form</h2>
+
+      <label for="Request_type">Request Type</label>
+      <select required id="request_type" name="request_type" onchange="onselection()">
+        <option value="0">Choose Option</option>
+        <option value="1">Deposit</option>
+        <option value="2">Withdraw</option>
+        <option value="3">Transfer</option>
+      </select>
+
+      <div id="deposit_request_section" class="column" style="display: none;">
+        <h3>Deposit Form</h3>
+        <br>
+          <form class="column" action="process-transaction-requests" method="post">
+            {% csrf_token %}
+            <label for="amount">Amount</label>
+            <input required type="number" name="amount" id="amount">
+
+            <label for="amount">Account Number</label>
+            <input disabled type="text" name="account" id="amount" value="{{account.account_number}}">
+            
+            <input type="hidden" name="type" value="1">
+            
+            <input type="submit" value="Submit">
+          </form>
+      </div>
+
+      <div id="withdraw_request_section" class="column" style="display: none;">
+        <h3>Withdraw Form</h3>
+        <br>
+        <form class="column" action="process-transaction-requests" method="post">
+          {% csrf_token %}
+          <label for="amount">Amount</label>
+          <input required type="number" name="amount" id="amount">
+
+          <label for="amount">Account Number</label>
+          <input disabled type="text" name="amount" id="amount" value="{{account.account_number}}">
+          
+          <input type="hidden" name="type" value="2">
+
+          <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <div id="transfer_request_section" class="column" style="display: none;">
+      <h3>Transfer Form</h3>
+      <br>
+        <form class="column" action="process-transaction-requests" method="post">
+          {% csrf_token %}
+          <label for="amount">Amount</label>
+          <input required type="number" name="amount" id="amount">
+
+          <label for="amount">From Account Number</label>
+          <input disabled type="text" name="fromaccount" id="amount" value="{{account.account_number}}">
+
+          <label for="amount">To Account Number</label>
+          <input required type="text" name="toaccount" id="amount">
+
+          <input type="hidden" name="type" value="3">
+
+          <input type="submit" value="Submit">
+        </form>
+      </div>
+
+    </section>
+
+  <script>
+    
+    let depositSection = document.getElementById("deposit_request_section");
+    let withdrawSection = document.getElementById("withdraw_request_section");
+    let transferSection = document.getElementById("transfer_request_section")
+    
+    function onselection() {
+      let selectedValue = +document.getElementById("request_type").value
+      if (selectedValue === 1) {
+        depositSection.style.display = "flex";
+        withdrawSection.style.display = "none";
+        transferSection.style.display = "none";
+      } else if (selectedValue === 2) {
+        depositSection.style.display = "none";
+        withdrawSection.style.display = "flex";
+        transferSection.style.display = "none";
+      } else if (selectedValue === 3) {
+        depositSection.style.display = "none";
+        withdrawSection.style.display = "none";
+        transferSection.style.display = "flex";
+      } else {
+        transferSection.style.display = "none";
+        depositSection.style.display = "none";
+        withdrawSection.style.display = "none";
+      }
+    }
+  </script>
+</body>
+
+</html>
+{% endblock %}

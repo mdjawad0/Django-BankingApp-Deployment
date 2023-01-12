@@ -1,0 +1,67 @@
+{% extends "adminapp/base.html" %}
+{% block content %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Users</title>
+</head>
+<body>
+    <section>
+      <h3 style="text-align: center; color: #2691d9">Welcome {{ name }} | {{ email }}</h3>
+      <p style="text-align: center; color: #2b3339">You Logged In at: {{ datetime }}</p>
+      <br>
+    <table style="width: 100%;">
+      <tr>
+        <th>Sr. No</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Created On</th>
+        <th>Status</th>
+        <th>Access</th>
+        <th>Account</th>
+      </tr>
+      {% for user in users %}
+      {% if user.type == 2 %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.phone }}</td>
+        <td>{{ user.created_on }}</td>
+        <td>
+          {% if user.status == 0 %}
+            <span class="badge badge-danger">In Active</span>
+          {% else %}
+            <span class="badge badge-warning">Active</span>
+          {% endif %}
+        </td>
+        <td>
+          {% if user.access_status == 0 %}
+            <a style="text-decoration: none;" href="grant-access?email={{user.email}}&status=1" 
+            class="btn btn-dark">Grant Access</a>
+          {% else %}
+            <a style="text-decoration: none;" href="grant-access?email={{user.email}}&status=0" 
+            class="btn btn-danger">Revoke Access</a>
+          {% endif %}
+        </td>
+        <td>
+          {% if user.status == 0 %}
+            <a style="text-decoration: none;" href="block-user?email={{user.email}}&status=1" 
+            class="btn btn-dark">UnBlock</a>
+          {% else %}
+            <a style="text-decoration: none;" href="block-user?email={{user.email}}&status=0"
+             class="btn btn-danger">Block</a>
+          {% endif %}
+        </td>
+      </tr>
+      {% endif %}
+      {% endfor %}
+    </table>
+  </section>
+
+</body>
+</html>
+{% endblock %}

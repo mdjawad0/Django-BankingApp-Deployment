@@ -1,0 +1,54 @@
+{% extends "adminapp/base.html" %}
+{% block content %}
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service Requests</title>
+</head>
+<body>
+  <section>
+    <table>
+      <tr>
+        <th>Sr. No</th>
+        <th>Request</th>
+        <th>Request By</th>
+        <th>Request Date</th>
+        <th>Tags</th>
+        <th>Actions</th>
+      </tr>
+
+      {% for service in services %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ service.code }}</td>
+        <td>{{ service.requested_by.email }}</td>
+        <td>{{ service.requested_on }}</td>
+        <td>
+          <span class="badge badge-warning">{{ service.request_label }}</span>
+          <span class="badge badge-info">{{ service.label }}</span>
+        </td>
+        {% if service.status == 0 %}
+        <td>
+          <a style="text-decoration: none;" href="approve-service?type={{service.request_type}}&sid={{service.id}}"> 
+          <button type="button" class="btn btn-dark">Approve</button>
+         </a>
+         <a style="text-decoration: none;" href="reject-service?&sid={{service.id}}"> 
+          <button type="button" class="btn btn-danger">Reject</button>
+          </a>
+        </td>
+        {% else %}
+        <td>
+          Service Settled | {{ service.label }}
+        </td>
+        {% endif %}
+      </tr>
+      {% endfor %}   
+    
+    </table>
+  </section>
+
+</body>
+</html>
+{% endblock %}

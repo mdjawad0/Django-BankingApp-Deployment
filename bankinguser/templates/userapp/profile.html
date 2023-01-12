@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="{% static 'style.css' %}">
+  <head>
+    <meta charset="utf-8">
+    <title>Profile</title>
+  </head>
+  <body>
+    <div class="center">
+
+      <img style="display: block; margin-left: auto; margin-right: auto;" src="{% static 'profile.png' %}" width="64px" height="64px">
+        <p style="text-align: center;color: #2691d9;">Enter Details to Update Account</p>
+        
+      <form method="post" action="/bankinguser/edit-profile">
+        {% csrf_token %}
+        <div class="txt_field">
+          <input type="text" name="name" value={{user.name}} required>
+          <span></span>
+          <label>Full Name</label>
+        </div>
+        <div class="txt_field">
+            <input type="email" name="email" value={{user.email}} required>
+            <span></span>
+            <label>Email</label>
+          </div>
+          <div class="txt_field">
+            <input type="phone" name="phone" pattern="[789][0-9]{9}" required value={{user.phone}} >
+            <span></span>
+            <label>Phone</label>
+          </div>
+        <div class="txt_field">
+          <input type="password" name="password" required>
+          <span></span>
+          <label>Old Password</label>
+        </div>
+        <div class="txt_field">
+          <input type="password" name="newpassword" required>
+          <span></span>
+          <label>New Password</label>
+        </div>
+        <input type="submit" value="Update Profile">
+        
+      </form>
+    </div>
+
+  </body>
+</html>

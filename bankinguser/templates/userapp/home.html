@@ -1,0 +1,68 @@
+{% extends "userapp/base.html" %}
+{% block content %}
+{% load static %} 
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>End User</title>
+  <style>
+    button{
+      width: 100%;
+      background-color: #2691d9;
+      color: white;
+      padding: 14px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    body{
+      background-image: url("{% static 'bankbg.png'%}");
+      background-size: 1400px 900px;
+      background-repeat: no-repeat;
+      background-position: top;
+      background-attachment: fixed;
+    }
+  </style>
+</head>
+<body>
+  <br><br>
+  <div class="center">
+    <br>
+    <br>
+    <img style="display: block; margin-left: auto; margin-right: auto;" src="{% static 'profile.png' %}" width="64px" height="64px">
+    <br>
+    <h2 style="text-align: center;color: #2691d9;">Welcome, {{ user.name }}</h2>
+    <h2 style="text-align: center;color: #2691d9;">{{ user.email }}</h2>
+
+    {% if user.status == 1 %}
+      <br>
+      <p style="text-align: center;">Today is: {{date}} </p>
+      <br>
+      <p style="text-align: center;">Last Login: {{lastlogin}}</p>
+      <br>
+        {% if user.access_status == 1 %}
+          <h2 style="text-align: center;color: #2691d9;">Bank Account Details</h2>
+          <p style="text-align: center;">Account# {{account.account_number}}</p>
+          <p style="text-align: center;">Balance {{account.balance}}</p>
+          <p style="text-align: center;">Last Updated On {{account.last_updated_on}}</p>
+            <br>
+        {% endif %}
+      <br>
+      <a href="/bankinguser/profile"><button>Edit Profile</button></a>
+      <br>
+      <a href="/bankinguser/deactivate"><button>Deactivate Account</button></a>
+    {% else %}
+      <br>
+      <h3 style="text-align: center;color: #cd1111;">Your Account is Deactivated.<br/>Please Contact Your Branch.</h3>
+      <br>
+      {% endif %}
+
+      
+  </div>
+</body>
+</html>
+{% endblock %}

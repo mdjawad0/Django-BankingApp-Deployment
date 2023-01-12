@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+    <body>
+      <nav>
+        <a href="/bankinguser/home">My Bank</a>
+        <ul>
+          <li>
+            <a href="/bankinguser/home">My Profile</a>
+          </li>
+          <li>
+            <a href="/bankinguser/transaction-requests">Transaction Requests</a>
+          </li>
+          <li>
+            <a href="/bankinguser/transaction-history">Transaction History</a>
+          </li>
+          <li>
+            <a href="/bankinguser/service-requests">Service Requests</a>
+          </li>
+          <li>
+            <a href="/bankinguser/service-history">Service History</a>
+          </li>
+          <li>
+            <a href="/bankinguser/complaints">Complaints</a>
+          </li>
+          <li>
+            <a href="/bankinguser/logout">Logout</a>
+          </li>
+        </ul>
+      </nav>
+    </body>
+</html>
+{% block content %}
+{% endblock %}

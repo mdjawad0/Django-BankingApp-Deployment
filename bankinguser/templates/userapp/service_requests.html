@@ -1,0 +1,150 @@
+{% extends "userapp/base.html" %}
+{% block content %}<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service Requests</title>
+</head>
+
+<body>
+  <section>
+    <h2>Service Request Form</h2>
+
+    <label for="Request_type">Service type</label>
+    <select required id="request_type" name="request_type" onchange="onselection()">
+      <option value="0">Choose Option</option>
+      <option value="1">Fixed Deposit</option>
+      <option value="2">Debit/Credit Card</option>
+      <option value="3">Cheque Book</option>
+      <option value="4">Loan</option>
+    </select>
+
+    <div id="fixed_deposit_section" class="column" style="display: none;">
+      <h3>Fixed Deposit</h3>
+      <br>
+      <form action="process-service-requests" method="post">
+        {% csrf_token %}
+        <label for="amount">Account Number</label>
+        <input disabled type="text" name="account_number" value="{{account.account_number}}">
+        <br>
+        <label for="amount">Amount</label>
+        <input required type="number" name="amount" id="amount">
+        <br>
+        <label for="start_date">Start Date</label>
+        <input required type="date" name="start_date" id="start_date">
+        <br>
+        <label for="end_date">End Date</label>
+        <input required type="date" name="end_date" id="end_date">
+        <br>
+        <label for="rate_of_interest">Rate of Interest</label>
+        <input disabled type="text" name="rate_of_interest" id="rate_of_interest" value="5.5">
+        <input type="hidden" name="type" value="1">
+        <br>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+
+    <div id="card_section" class="column" style="display: none;">
+      <h3>Card Request</h3>
+      <br>
+      <form action="process-service-requests" method="post">
+        {% csrf_token %}
+        <p>Please select Type of Card:</p>
+        <input type="radio" id="credit" name="card" value="1">
+        <label for="credit">Credit Card</label><br>
+        <input type="radio" id="debit" name="card" value="2">
+        <label for="debit">Debit Card</label><br>
+        <input type="hidden" name="type" value="2">
+        <br>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+
+    <div id="cheque_book_section" class="column" style="display: none;">
+      <h3>Cheque Book Request</h3>
+      <br>
+      <form action="process-service-requests" method="post">
+        {% csrf_token %}
+
+        <label for="number_of_pages">Number of Pages</label>
+        <input required type="number" name="number_of_pages" id="number_of_pages">
+        <input type="hidden" name="type" value="3">
+        <br>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+
+    <div id="loan_section" class="column" style="display: none;">
+      <h3>Loan Request</h3>
+      <br>
+      <form action="process-service-requests" method="post">
+        {% csrf_token %}
+
+        <label for="account_number">Account Number</label>
+        <input disabled type="number" name="account_number" value="{{account.account_number}}" id="account_number">
+        <br>
+        <label for="amount">Amount</label>
+        <input required type="number" name="amount" id="amount">
+        <br>
+        <label for="start_date">Start Date</label>
+        <input required type="date" name="start_date" id="start_date">
+        <br>
+        <label for="end_date">End Date</label>
+        <input required type="date" name="end_date" id="end_date">
+        <br>
+        <label for="num_of_installments">Number of Installments</label>
+        <input required type="number" name="num_of_installments" id="num_of_installments">
+        <br>
+        <label for="rate_of_interest">Rate of Interest</label>
+        <input disabled type="number" name="rate_of_interest" id="rate_of_interest" value="10.7">
+        <input type="hidden" name="type" value="4">
+        <br>
+        <input type="submit" value="Submit">
+        </form>
+      </div>
+  
+  </section>
+
+  <script>
+    let fixedDepositSection = document.getElementById("fixed_deposit_section");
+    let cardSection = document.getElementById("card_section")
+    let chequesBookSection = document.getElementById("cheque_book_section")
+    let loanSection = document.getElementById("loan_section")
+
+    function onselection() {
+      let selectedValue = +document.getElementById("request_type").value
+      if (selectedValue === 1) {
+        fixedDepositSection.style.display = "flex";
+        cardSection.style.display = "none";
+        chequesBookSection.style.display = "none";
+        loanSection.style.display = "none";
+      } else if (selectedValue == 2) {
+        fixedDepositSection.style.display = "none";
+        cardSection.style.display = "flex";
+        chequesBookSection.style.display = "none";
+        loanSection.style.display = "none";
+      }
+      else if (selectedValue === 3) {
+        fixedDepositSection.style.display = "none";
+        cardSection.style.display = "none";
+        chequesBookSection.style.display = "flex";
+        loanSection.style.display = "none";
+      } else if (selectedValue === 4) {
+        fixedDepositSection.style.display = "none";
+        cardSection.style.display = "none";
+        chequesBookSection.style.display = "none";
+        loanSection.style.display = "flex";
+      } else {
+        fixedDepositSection.style.display = "none";
+        cardSection.style.display = "none";
+        chequesBookSection.style.display = "none";
+        loanSection.style.display = "none";
+      }
+    }
+  </script>
+</body>
+
+</html>
+{% endblock %}

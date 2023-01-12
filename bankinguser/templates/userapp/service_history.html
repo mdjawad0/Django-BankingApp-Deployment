@@ -1,0 +1,34 @@
+{% extends "userapp/base.html" %}
+{% block content %}
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service History</title>
+</head>
+<body>
+  <section>
+    <table>
+      <tr>
+        <th>Sr. No</th>
+        <th>Request Code</th>
+        <th>Request Date</th>
+        <th>Tags</th>
+      </tr>
+      {% for service in services %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ service.code }}</td>
+        <td>{{ service.requested_on }}</td>
+        <td>
+          <span class="badge badge-warning">{{ service.request_label }}</span>
+          <span class="badge badge-info">{{ service.label }}</span>
+        </td>
+      </tr>
+      {% endfor %}     
+    </table>
+  </section>
+
+</body>
+</html>
+{% endblock %}
