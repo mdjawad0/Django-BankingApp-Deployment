@@ -26,7 +26,7 @@ Command to verify the Docker containers:
 
 The application should be running at the following URL:
 
-**http://localhost:8000/bankingadmin** : Admin Module
+**http://localhost:8000/bankingadmin/** : Admin Module
 
 **http://localhost:8000/bankinguser/** : End-user Module
 
