@@ -2,7 +2,7 @@
 Deploying the Python banking application on Docker containers using a CI/CD pipeline
 
 ------------
-#### Deploy Application with Docker:
+#### Deploying Application with Docker:
 
 To create an image from a **Dockerfile**, use the following command: 
 
@@ -20,7 +20,7 @@ Command to verify the Docker containers:
 
 `docker container ls`
 
- Cmmand to list the running containers:
+ Command to list the running containers:
  
 ` docker ps`
 
@@ -33,7 +33,7 @@ The application should be running at the following URL:
 
 ------------
 
-#### Deploy Application with Jenkins CI/CD Pipeline:
+#### Deploying Application with the Jenkins CI/CD Pipeline:
 
 Install the following plugins on Jenkins:
 1. Python
