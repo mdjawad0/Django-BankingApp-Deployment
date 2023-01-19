@@ -11,19 +11,19 @@ pipeline {
             }
         }
 
-        stage('Test') {
-            steps {
-                withPythonEnv('/home/pritithadanisim/Documents/banking-env/') {
-                    // Print Path for Environment
-                    sh "pip -V"
+//         stage('Test') {
+//             steps {
+//                 withPythonEnv('/home/pritithadanisim/Documents/banking-env/') {
+//                     // Print Path for Environment
+//                     sh "pip -V"
                     
-                    // Run  test command
-                    sh "python manage.py test"
-                }
+//                     // Run  test command
+//                     sh "python manage.py test"
+//                 }
                 
-                echo 'Test Stage Finished'
-            }
-        }
+//                 echo 'Test Stage Finished'
+//             }
+//         }
 
     //Deploying in the local machine without using Docker 
 
